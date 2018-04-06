@@ -39,10 +39,12 @@ function dynamicPlanning (a, b) {
   let d = []
   d[0] = []
 
+  // 构建二维矩阵
   for (let j = 0; j <= lenB; j++) {
     d[0].push(j)
   }
 
+  // 构建二维矩阵
   for (let i = 0; i <= lenA; i++) {
     if (d[i]) {
       d[i][0] = i
@@ -52,6 +54,7 @@ function dynamicPlanning (a, b) {
     }
   }
 
+  // 规划最短距离
   for (let i = 1; i <= lenA; i++) {
     for (let j = 1; j <= lenB; j++) {
       if (a[i - 1] === b[j - 1]) {
