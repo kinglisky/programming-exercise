@@ -26,6 +26,6 @@ function quicksort (arr) {
 }
 
 const arr = []
-for (let i = 0; i < 10; i++) arr.push(Math.random() * 100 | 0)
+for (let i = 0; i < 7; i++) arr.push(Math.random() * 100 | 0)
 console.log('origin:', arr)
 console.log('sorted:', quicksort(arr))
