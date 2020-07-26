@@ -41,15 +41,6 @@ var longestIncreasingPath = function (matrix) {
         }
     }
 
-    function update(target) {
-        Object.keys(target).forEach(key => {
-            Object.keys(cache[key]).forEach(k => {
-                cache[key][k] += 1;
-            });
-            update(cache[key]);
-        });
-    }
-
     function map(ix, iy) {
         const key = `${ix}${iy}`;
         [
@@ -63,7 +54,6 @@ var longestIncreasingPath = function (matrix) {
         }).forEach(p => {
             const ck = `${p.x}${p.y}`;
             cache[ck][key] = 1;
-            update(cache[ck]);
         });
     }
 
@@ -72,12 +62,25 @@ var longestIncreasingPath = function (matrix) {
             map(i, j);
         }
     }
+    let max = 0;
 
-    console.log(JSON.stringify(cache));
+    function update(target) {
+        Object.keys(target).forEach(key => {
+            Object.keys(cache[key]).forEach(k => {
+                cache[key][k] += 1;
+                max = Math.max(max, cache[key][k]);
+            });
+            update(cache[key]);
+        });
+    }
+
+    update(cache);
+
+    return max;
 };
 
 console.log(longestIncreasingPath([
-    [9, 9, 4],
-    [6, 6, 8],
-    [2, 1, 1]
+    [3, 4, 5],
+    [3, 2, 6],
+    [2, 2, 1]
 ]));
