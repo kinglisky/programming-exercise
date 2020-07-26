@@ -34,32 +34,46 @@
 var longestIncreasingPath = function (matrix) {
     const m = matrix.length;
     const n = matrix[0].length;
-    const cache = Array.from({ length: m }).fill(Array.from({ length: n }).fill(0));
-    console.log(cache)
-    function upate(x, y) {
-        if (cache[x][y]) {
-            return cache[x][y];
-        }
-        const pos = [
-            [x - 1, y],
-            [x + 1, y],
-            [x, y - 1],
-            [x, y + 1],
-        ];
-        pos.forEach((tx, ty) => {
-            const tv = matrix[tx, ty];
-            if (tv != null && tv < matrix[x, y]) {
-                cache[x][y] += upate(tx, ty);
-            }
-        });
-    }
+    const cache = {};
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
-            upate(i, j);
+            cache[`${i}${j}`] = {};
         }
     }
 
-    console.log(cache);
+    function update(target) {
+        Object.keys(target).forEach(key => {
+            Object.keys(cache[key]).forEach(k => {
+                cache[key][k] += 1;
+            });
+            update(cache[key]);
+        });
+    }
+
+    function map(ix, iy) {
+        const key = `${ix}${iy}`;
+        [
+            { x: ix - 1, y: iy },
+            { x: ix + 1, y: iy },
+            { x: ix, y: iy - 1 },
+            { x: ix, y: iy + 1 },
+        ].filter(p => {
+            const tv = matrix[p.x] && matrix[p.x][p.y];
+            return tv != null && tv < matrix[ix][iy];
+        }).forEach(p => {
+            const ck = `${p.x}${p.y}`;
+            cache[ck][key] = 1;
+            update(cache[ck]);
+        });
+    }
+
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            map(i, j);
+        }
+    }
+
+    console.log(JSON.stringify(cache));
 };
 
 console.log(longestIncreasingPath([
