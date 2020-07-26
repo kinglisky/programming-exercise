@@ -33,9 +33,9 @@ m = 2
  * @return {number}
  */
 var splitArray = function (nums, m) {
-    let len = nums.length,
-        sumList = Array(len + 1).fill(0),
-        dp = Array.from({ length: len + 1 }, () => Array(m + 1).fill(Number.MAX_VALUE));
+    const len = nums.length;
+    const sumList = Array(len + 1).fill(0);
+    const dp = Array.from({ length: len + 1 }, () => Array(m + 1).fill(Number.MAX_VALUE));
 
     // 逐位增加，反面后面根据区间求区间和
     for (let i = 0; i < len; i++) {
