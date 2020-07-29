@@ -26,7 +26,7 @@ A[i], B[i] 均为 [0, 2000]区间内的整数。
  * @param {number[]} B
  * @return {number}
  */
-var minSwap = function(A, B) {
+var minSwap = function (A, B) {
     const len = A.length;
     const dp = new Array(len).fill().map(() => []);
 
@@ -46,16 +46,17 @@ var minSwap = function(A, B) {
                 dp[i][1] = Math.min(dp[i - 1][0], dp[i - 1][1]) + 1;
             } else {
                 // 前后两位置需要一起换
-                dp[i][0] = dp[i - 1][0]; 
+                dp[i][0] = dp[i - 1][0];
                 dp[i][1] = dp[i - 1][1] + 1;
             }
         } else {
             // 前个位置交换 OR 当前位置交互
-            dp[i][0] = dp[i - 1][1] + 1;
+            dp[i][0] = dp[i - 1][1];
             dp[i][1] = dp[i - 1][0] + 1;
         }
     }
     return Math.min(dp[len - 1][0], dp[len - 1][1]);
 };
 
-console.log(minSwap([1,3,5,4], [1,2,3,7]));
+console.log(minSwap([0, 4, 4, 5, 9], [0, 1, 6, 8, 10]));
+// console.log(minSwap([0, 4, 4], [0, 1, 6]));
