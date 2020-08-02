@@ -35,7 +35,10 @@ var smallestRange = function (nums) {
         res.max = Math.min(res.max, curr.max);
         return res;
     }, { min: -Number.MAX_VALUE, max: Number.MAX_VALUE });
+
+    const include = nums.map(values => values.filter(v => v >= rang.min && v <= rang.max));
     console.log(rang);
+    console.log(include);
 };
 
 const nums = [
