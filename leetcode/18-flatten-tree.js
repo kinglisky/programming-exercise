@@ -43,19 +43,19 @@ var flatten = function (root) {
         if (!node) {
             return arr;
         }
-        arr.push(node.val);
+        arr.push(node);
         def(node.left, arr);
         def(node.right, arr);
         return arr;
     }
 
-    const nodes = def(root).map(val => ({ val, right: null, left: null }));
+    const nodes = def(root);
     nodes.forEach((node, i) => {
         if (nodes[i + 1]) {
+            node.left = null;
             node.right = nodes[i + 1];
         }
-    })
-    return nodes[0];
+    });
 };
 
 console.log(flatten({
