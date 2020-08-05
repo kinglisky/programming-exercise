@@ -39,17 +39,17 @@
  * @return {void} Do not return anything, modify root in-place instead.
  */
 var flatten = function (root) {
-    function def(node, arr = []) {
+    function dfs(node, arr = []) {
         if (!node) {
             return arr;
         }
         arr.push(node);
-        def(node.left, arr);
-        def(node.right, arr);
+        dfs(node.left, arr);
+        dfs(node.right, arr);
         return arr;
     }
 
-    const nodes = def(root);
+    const nodes = dfs(root);
     nodes.forEach((node, i) => {
         if (nodes[i + 1]) {
             node.left = null;

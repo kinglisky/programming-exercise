@@ -39,18 +39,18 @@
  */
 var maxPathSum = function(root) {
     let max = -Number.MAX_SAFE_INTEGER;
-    const def = (node) => {
+    const dfs = (node) => {
         if (!node) {
             return 0;
         }
         const { left, right, val } = node;
-        const lv = Math.max(def(left), 0);
-        const rv = Math.max(def(right), 0);
+        const lv = Math.max(dfs(left), 0);
+        const rv = Math.max(dfs(right), 0);
         max = Math.max(max, val + lv + rv);
         console.log();
         return val + Math.max(lv, rv);
     }
-    def(root);
+    dfs(root);
     return max;
 };
 

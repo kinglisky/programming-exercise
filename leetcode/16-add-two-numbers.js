@@ -41,16 +41,16 @@ var nodes2 = [5, 6, 4].map((val) => ({ val, next: null }));
  * @return {ListNode}
  */
 var addTwoNumbers = function (l1, l2) {
-    function def(node, arr = []) {
+    function dfs(node, arr = []) {
         if (!node) {
             return arr;
         }
         arr.push(node.val);
-        return def(node.next, arr);
+        return dfs(node.next, arr);
     }
 
-    const arr1 = def(l1);
-    const arr2 = def(l2);
+    const arr1 = dfs(l1);
+    const arr2 = dfs(l2);
     const list = [];
     console.log(arr1);
     console.log(arr2);
