@@ -27,7 +27,13 @@ var palindromePairs = function (words) {
     }, {});
     const res = [];
     const isPalindromic = (str) => {
-        return str.split('').reverse().join('') === str;
+        let l = 0, r = str.length - 1;
+        while (l < r) {
+            if (str[l] != str[r]) return false;
+            l++;
+            r--;
+        }
+        return true;
     }
     while (words.length) {
         const word = words.shift();
@@ -36,10 +42,10 @@ var palindromePairs = function (words) {
                 res.push([wordsMap[word], wordsMap[words[i]]]);
             }
             if (isPalindromic(words[i] + word)) {
-                res.push([wordsMap[words[i]],wordsMap[word]]);
+                res.push([wordsMap[words[i]], wordsMap[word]]);
             }
         }
-    } 
+    }
     return res;
 };
 
