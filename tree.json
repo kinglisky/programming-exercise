@@ -1,17 +1,21 @@
 {
-    "val": 2,
+    "val": 3,
     "left": {
-        "val": 1,
+        "val": 9,
         "left": null,
         "right": null
     },
     "right": {
-        "val": 4,
+        "val": 20,
         "left": {
-            "val": 3,
+            "val": 15,
             "left": null,
             "right": null
         },
-        "right": null
+        "right": {
+            "val": 7,
+            "left": null,
+            "right": null
+        }
     }
 }
