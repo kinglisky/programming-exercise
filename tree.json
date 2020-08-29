@@ -5,5 +5,9 @@
         "left": null,
         "right": null
     },
-    "right": null
+    "right": {
+        "val": 4,
+        "left": null,
+        "right": null
+    }
 }
