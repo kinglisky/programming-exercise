@@ -3,10 +3,14 @@
     "left": {
         "val": 2,
         "left": null,
-        "right": null
+        "right": {
+            "val": 5,
+            "left": null,
+            "right": null
+        }
     },
     "right": {
-        "val": 4,
+        "val": 3,
         "left": null,
         "right": null
     }
