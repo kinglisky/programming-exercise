@@ -1,7 +1,7 @@
 const fs = require('fs');
 const util = require('util');
 const writeFile = util.promisify(fs.writeFile);
-const data = [1, 2, 3, null, 5];
+const data = [3, 9, 20, null, null, 15, 7];
 
 function arrToTree(data) {
     const tree = {
