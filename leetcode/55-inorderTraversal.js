@@ -12,17 +12,16 @@
  * @return {number[]}
  */
 var inorderTraversal = function(root) {
-    const queue = [root];
     const res = [];
-    while (queue.length) {
-        const node = queue.shift();
-        res.push(node.val);
-        if (node.left) {
-            queue.unshift(node.left);
+    const stk = [];
+    while (root || stk.length) {
+        while (root) {
+            stk.push(root);
+            root = root.left;
         }
-        if (node.right) {
-            queue.push(node.right);
-        }
+        root = stk.pop();
+        res.push(root.val);
+        root = root.right;
     }
     return res;
 };
