@@ -30,3 +30,11 @@ type Absolute<T extends number> =  `${T}` extends `-${infer Rest}`
     ? `${Rest}`
     : `${T}`;
 type Result = Absolute<-100>; // expected to be "100"
+
+type StringToUnion<T extends string> = T extends `${infer A}${infer B}`
+    ? A | StringToUnion<B>
+    : never;
+type R = StringToUnion<'123'>; // expected to be "1" | "2" | "3"
+
+type B = { a: string } & {a: number }
+type Merge<T extends Record<string, any>, U extends Record<string, any>> 
